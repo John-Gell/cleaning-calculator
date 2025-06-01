@@ -92,13 +92,13 @@ const AirbnbCleaningCalculator = () => {
         });
         
         // Convert to cleaning records
-        const cleanings = monthlyEvents.map(event => ({
-          listingName: result.listingName,
-          cleaningDate: event.dtend,
-          guestName: event.summary.replace(/^(Booking|Reservation|Stay)\s*-?\s*/i, '').trim(),
-          amount: listing.rate,
-          bookingId: event.uid || `${event.dtstart}-${event.dtend}`
-        }));
+const cleanings = monthlyEvents.map(event => ({
+  listingName: result.listingName,
+  cleaningDate: new Date(event.dtend),
+  guestName: event.summary.replace(/^(Booking|Reservation|Stay)\s*-?\s*/i, '').trim(),
+  amount: listing.rate,
+  bookingId: event.uid || `${event.dtstart}-${event.dtend}`
+}));
         
         allCleanings = [...allCleanings, ...cleanings];
       }
